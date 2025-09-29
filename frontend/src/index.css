@@ -1,0 +1,463 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Figtree:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer base {
+  :root {
+    /* AI Color Palette */
+    --ai-purple: 139 92 246;
+    --ai-cyan: 6 182 212;
+    --ai-emerald: 16 185 129;
+    --ai-amber: 245 158 11;
+    --ai-red: 239 68 68;
+    
+    /* Background Colors */
+    --background: 248 250 252;
+    --foreground: 31 41 55;
+    --card: 255 255 255;
+    --card-foreground: 31 41 55;
+    --popover: 255 255 255;
+    --popover-foreground: 31 41 55;
+    
+    /* Primary Colors (AI Purple) */
+    --primary: 139 92 246;
+    --primary-foreground: 255 255 255;
+    
+    /* Secondary Colors */
+    --secondary: 226 232 240;
+    --secondary-foreground: 31 41 55;
+    --muted: 241 245 249;
+    --muted-foreground: 100 116 139;
+    
+    /* Accent Colors (AI Cyan) */
+    --accent: 6 182 212;
+    --accent-foreground: 255 255 255;
+    
+    /* Status Colors */
+    --destructive: 239 68 68;
+    --destructive-foreground: 255 255 255;
+    --success: 16 185 129;
+    --warning: 245 158 11;
+    
+    /* UI Colors */
+    --border: 226 232 240;
+    --input: 226 232 240;
+    --ring: 139 92 246;
+    
+    /* Chart Colors */
+    --chart-1: 139 92 246;
+    --chart-2: 6 182 212;
+    --chart-3: 16 185 129;
+    --chart-4: 245 158 11;
+    --chart-5: 239 68 68;
+    
+    --radius: 1rem;
+  }
+  
+  .dark {
+    /* Dark AI Theme */
+    --background: 15 23 42;
+    --foreground: 248 250 252;
+    --card: 30 41 55;
+    --card-foreground: 248 250 252;
+    --popover: 30 41 55;
+    --popover-foreground: 248 250 252;
+    
+    /* Primary Colors (AI Purple) */
+    --primary: 139 92 246;
+    --primary-foreground: 15 23 42;
+    
+    /* Secondary Colors */
+    --secondary: 51 65 85;
+    --secondary-foreground: 248 250 252;
+    --muted: 51 65 85;
+    --muted-foreground: 148 163 184;
+    
+    /* Accent Colors (AI Cyan) */
+    --accent: 6 182 212;
+    --accent-foreground: 15 23 42;
+    
+    /* Status Colors */
+    --destructive: 239 68 68;
+    --destructive-foreground: 248 250 252;
+    --success: 16 185 129;
+    --warning: 245 158 11;
+    
+    /* UI Colors */
+    --border: 51 65 85;
+    --input: 51 65 85;
+    --ring: 139 92 246;
+    
+    /* Chart Colors */
+    --chart-1: 139 92 246;
+    --chart-2: 6 182 212;
+    --chart-3: 16 185 129;
+    --chart-4: 245 158 11;
+    --chart-5: 239 68 68;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-gradient-to-br from-neutral-background via-neutral-background-2 to-neutral-background-3 text-neutral-text antialiased;
+    min-height: 100vh;
+    background-attachment: fixed;
+  }
+  
+  .dark body {
+    @apply bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-slate-100;
+  }
+  
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-light-surface-3;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-light-text-secondary rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-light-accent;
+  }
+  
+  /* Focus styles for accessibility */
+  .focus-visible {
+    @apply outline-2 outline-offset-2 outline-light-accent ring-0;
+  }
+  
+  /* AI Glassmorphism utilities */
+  .glass {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    @apply bg-glass-white border border-neutral-border/30;
+  }
+  
+  .glass-card {
+    @apply glass rounded-2xl shadow-glass-card hover:shadow-glass-card-hover transition-all duration-300;
+  }
+  
+  .glass-elevated {
+    @apply glass rounded-2xl shadow-glass-elevated hover:shadow-glass-elevated transition-all duration-300;
+  }
+  
+  .glass-sidebar {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    @apply bg-glass-white-90 border-r border-neutral-border/20;
+  }
+  
+  .glass-header {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    @apply bg-glass-white-70 border-b border-neutral-border/20;
+  }
+  
+  /* Animation utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .animate-scale-in {
+    animation: scaleIn 0.2s ease-out;
+  }
+  
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .glass {
+      @apply bg-light-surface border-light-text/20;
+    }
+    
+    :root {
+      --light-accent: #0EC7D9;
+      --light-accent-2: #6F4BFF;
+    }
+  }
+  
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* AI Button Styles */
+  .btn-ai-primary {
+    @apply bg-gradient-to-r from-ai-purple via-ai-cyan to-ai-emerald text-white font-semibold px-6 py-3 rounded-xl shadow-ai-button hover:shadow-ai-button-hover transform hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-ai-purple focus:ring-offset-2;
+  }
+  
+  .btn-ai-secondary {
+    @apply glass-card text-neutral-text border border-neutral-border/30 font-medium px-6 py-3 rounded-xl hover:bg-glass-white-90 hover:border-ai-purple/40 hover:shadow-glass-card-hover transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-ai-purple focus:ring-offset-2;
+  }
+  
+  .btn-ai-ghost {
+    @apply bg-transparent text-neutral-text hover:bg-glass-white-50 border border-transparent hover:border-neutral-border/30 font-medium px-6 py-3 rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-ai-purple focus:ring-offset-2;
+  }
+  
+  .btn-ai-destructive {
+    @apply bg-ai-red text-white font-semibold px-6 py-3 rounded-xl shadow-ai-red-glow hover:shadow-ai-red-glow transform hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-ai-red focus:ring-offset-2;
+  }
+  
+  /* AI Input Styles */
+  .input-ai {
+    @apply glass-card border-2 border-neutral-border/60 text-neutral-text placeholder:text-neutral-text placeholder:opacity-70 placeholder:font-semibold rounded-xl px-4 py-3 focus:border-ai-purple focus:ring-2 focus:ring-ai-purple/20 focus:outline-none transition-all duration-300 shadow-ai-button-secondary hover:shadow-glass-card hover:border-neutral-border/80;
+  }
+  
+  /* Enhanced placeholder visibility */
+  .input-ai::placeholder {
+    color: rgb(31 41 55) !important; /* neutral-text */
+    opacity: 0.8 !important;
+    font-weight: 600 !important;
+  }
+  
+  .input-ai:focus::placeholder {
+    opacity: 0.6 !important;
+  }
+  
+  /* Select component styling to match input-ai */
+  .input-ai[data-radix-select-trigger] {
+    @apply bg-glass-white text-neutral-text;
+  }
+  
+  .input-ai[data-radix-select-trigger]:hover {
+    @apply bg-glass-white-90 text-neutral-text border-neutral-border/80;
+  }
+  
+  .input-ai[data-radix-select-trigger]:focus {
+    @apply bg-glass-white text-neutral-text border-ai-purple;
+  }
+  
+  .input-ai[data-radix-select-trigger] [data-radix-select-value] {
+    @apply text-neutral-text;
+  }
+  
+  .input-ai[data-radix-select-trigger] [data-radix-select-placeholder] {
+    @apply text-neutral-text opacity-80 font-semibold;
+  }
+  
+  /* Override any conflicting hover states */
+  .input-ai[data-radix-select-trigger]:hover [data-radix-select-value] {
+    @apply text-neutral-text;
+  }
+  
+  .input-ai[data-radix-select-trigger]:hover [data-radix-select-placeholder] {
+    @apply text-neutral-text opacity-80;
+  }
+  
+  /* Ensure select elements are always visible */
+  .input-ai[data-radix-select-trigger] {
+    background-color: rgba(255, 255, 255, 0.8) !important;
+    color: rgb(31, 41, 55) !important;
+  }
+  
+  .input-ai[data-radix-select-trigger]:hover {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    color: rgb(31, 41, 55) !important;
+    border-color: rgb(139, 92, 246) !important;
+  }
+  
+  .input-ai[data-radix-select-trigger]:hover * {
+    color: rgb(31, 41, 55) !important;
+  }
+  
+  .input-ai[data-radix-select-trigger]:focus {
+    background-color: rgba(255, 255, 255, 0.8) !important;
+    color: rgb(31, 41, 55) !important;
+    border-color: rgb(139, 92, 246) !important;
+  }
+  
+  .input-ai[data-radix-select-trigger]:focus * {
+    color: rgb(31, 41, 55) !important;
+  }
+  
+  /* Force all child elements to maintain dark text */
+  .input-ai[data-radix-select-trigger] * {
+    color: rgb(31, 41, 55) !important;
+  }
+  
+  .input-ai[data-radix-select-trigger]:hover * {
+    color: rgb(31, 41, 55) !important;
+  }
+  
+  .input-ai[data-radix-select-trigger]:focus * {
+    color: rgb(31, 41, 55) !important;
+  }
+  
+  /* Target specific Radix UI elements */
+  .input-ai[data-radix-select-trigger] [data-radix-select-value] {
+    color: rgb(31, 41, 55) !important;
+  }
+  
+  .input-ai[data-radix-select-trigger]:hover [data-radix-select-value] {
+    color: rgb(31, 41, 55) !important;
+  }
+  
+  .input-ai[data-radix-select-trigger] [data-radix-select-placeholder] {
+    color: rgb(31, 41, 55) !important;
+    opacity: 0.8 !important;
+  }
+  
+  .input-ai[data-radix-select-trigger]:hover [data-radix-select-placeholder] {
+    color: rgb(31, 41, 55) !important;
+    opacity: 0.8 !important;
+  }
+  
+  /* Override any white text from Radix UI */
+  .input-ai[data-radix-select-trigger] span {
+    color: rgb(31, 41, 55) !important;
+  }
+  
+  .input-ai[data-radix-select-trigger]:hover span {
+    color: rgb(31, 41, 55) !important;
+  }
+  
+  /* Fix dropdown items (SelectContent) styling */
+  .input-ai[data-radix-select-trigger] + div [data-radix-select-content] {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    border: 1px solid rgba(226, 232, 240, 0.5) !important;
+  }
+  
+  .input-ai[data-radix-select-trigger] + div [data-radix-select-item] {
+    color: rgb(31, 41, 55) !important;
+    background-color: transparent !important;
+  }
+  
+  .input-ai[data-radix-select-trigger] + div [data-radix-select-item]:hover {
+    color: rgb(31, 41, 55) !important;
+    background-color: rgba(255, 255, 255, 0.5) !important;
+  }
+  
+  .input-ai[data-radix-select-trigger] + div [data-radix-select-item]:focus {
+    color: rgb(31, 41, 55) !important;
+    background-color: rgba(139, 92, 246, 0.1) !important;
+  }
+  
+  /* Alternative targeting for dropdown items */
+  [data-radix-select-content] {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    border: 1px solid rgba(226, 232, 240, 0.5) !important;
+  }
+  
+  [data-radix-select-item] {
+    color: rgb(31, 41, 55) !important;
+    background-color: transparent !important;
+  }
+  
+  [data-radix-select-item]:hover {
+    color: rgb(31, 41, 55) !important;
+    background-color: rgba(255, 255, 255, 0.5) !important;
+  }
+  
+  [data-radix-select-item]:focus {
+    color: rgb(31, 41, 55) !important;
+    background-color: rgba(139, 92, 246, 0.1) !important;
+  }
+  
+  /* AI Card Styles */
+  .card-ai {
+    @apply glass-card p-6 transition-all duration-300;
+  }
+  
+  .card-ai-elevated {
+    @apply glass-elevated p-6 transition-all duration-300;
+  }
+  
+  /* AI Text Gradients */
+  .text-gradient-ai {
+    @apply bg-gradient-to-r from-ai-purple via-ai-cyan to-ai-emerald bg-clip-text text-transparent;
+  }
+  
+  .text-gradient-ai-subtle {
+    @apply bg-gradient-to-r from-neutral-text to-neutral-text-secondary bg-clip-text text-transparent;
+  }
+  
+  /* AI Sidebar Styles */
+  .sidebar-item-ai {
+    @apply flex items-center gap-3 px-4 py-3 text-neutral-text-secondary hover:text-neutral-text hover:bg-glass-white-50 rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-ai-purple focus:ring-offset-2;
+  }
+  
+  .sidebar-item-ai.active {
+    @apply text-ai-purple bg-gradient-to-r from-ai-purple/10 to-ai-cyan/10 border border-ai-purple/20 shadow-ai-purple-glow;
+  }
+  
+  /* AI Status Badges */
+  .status-badge-ai {
+    @apply glass-card text-neutral-text border border-neutral-border/30 rounded-full px-3 py-1 text-sm font-medium shadow-ai-button-secondary hover:shadow-glass-card transition-all duration-200;
+  }
+  
+  .status-badge-ai.active {
+    @apply border-status-active/30 text-status-active bg-status-active/5 shadow-ai-emerald-glow;
+  }
+  
+  .status-badge-ai.idle {
+    @apply border-status-idle/30 text-status-idle bg-status-idle/5 shadow-ai-amber-glow;
+  }
+  
+  .status-badge-ai.maintenance {
+    @apply border-status-maintenance/30 text-status-maintenance bg-status-maintenance/5 shadow-ai-red-glow;
+  }
+  
+  .status-badge-ai.completed {
+    @apply border-status-completed/30 text-status-completed bg-status-completed/5 shadow-ai-cyan-glow;
+  }
+  
+  .status-badge-ai.offline {
+    @apply border-neutral-text-secondary/30 text-neutral-text-secondary bg-neutral-text-secondary/5;
+  }
+  
+  /* AI Background Gradients */
+  .bg-gradient-ai {
+    background: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 50%, #10b981 100%);
+    background-size: 200% 200%;
+    animation: gradientShift 8s ease-in-out infinite;
+  }
+  
+  .bg-gradient-ai-subtle {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(6, 182, 212, 0.1) 50%, rgba(16, 185, 129, 0.1) 100%);
+  }
+  
+  /* Typography */
+  .font-display {
+    font-family: 'Figtree', system-ui, -apple-system, sans-serif;
+  }
+  
+  .font-body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+  
+  /* Legacy support */
+  .btn-gen-primary { @apply btn-ai-primary; }
+  .btn-gen-secondary { @apply btn-ai-secondary; }
+  .input-gen { @apply input-ai; }
+  .card-gen { @apply card-ai; }
+  .card-elevated { @apply card-ai-elevated; }
+  .text-gradient { @apply text-gradient-ai; }
+  .text-gradient-subtle { @apply text-gradient-ai-subtle; }
+  .sidebar-item { @apply sidebar-item-ai; }
+  .status-badge { @apply status-badge-ai; }
+}
