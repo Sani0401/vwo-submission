@@ -711,7 +711,7 @@ export const Dashboard: React.FC = () => {
         {/* Trends Chart */}
         <Card className="card-ai">
           <CardHeader>
-            <CardTitle className="text-neutral-text font-display">Fleet Activity Trends</CardTitle>
+            <CardTitle className="text-neutral-text font-display">Document Analysis Trends</CardTitle>
             <CardDescription className="text-neutral-text-secondary font-body">
               Daily document uploads and analysis completions over the last week
             </CardDescription>
@@ -763,7 +763,7 @@ export const Dashboard: React.FC = () => {
         {/* Risk Distribution Chart */}
         <Card className="card-ai">
           <CardHeader>
-            <CardTitle className="text-neutral-text font-display">Fleet Status Distribution</CardTitle>
+            <CardTitle className="text-neutral-text font-display">Analysis Status Distribution</CardTitle>
             <CardDescription className="text-neutral-text-secondary font-body">
               Drones categorized by operational status and health
             </CardDescription>
@@ -819,9 +819,9 @@ export const Dashboard: React.FC = () => {
                   <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-glass-white-50 flex items-center justify-center">
                     <FileText className="w-8 h-8 text-neutral-text-secondary" />
                   </div>
-                  <h3 className="text-lg font-semibold text-neutral-text mb-2 font-display">No Fleet Data</h3>
+                  <h3 className="text-lg font-semibold text-neutral-text mb-2 font-display">No Analysis Data</h3>
                   <p className="text-neutral-text-secondary text-sm max-w-xs font-body">
-                    Deploy drones and complete missions to see fleet status insights
+                    Upload documents and run analyses to see status insights
                   </p>
                 </div>
               </div>
@@ -835,9 +835,9 @@ export const Dashboard: React.FC = () => {
         <CardHeader>
           <div className="flex items-center justify-between">
             <div>
-              <CardTitle className="text-neutral-text font-display">Fleet Intelligence</CardTitle>
+              <CardTitle className="text-neutral-text font-display">Document Intelligence</CardTitle>
               <CardDescription className="text-neutral-text-secondary font-body">
-                Key insights from your drone fleet operations and performance
+                Key insights from your financial document analysis and performance
               </CardDescription>
             </div>
             

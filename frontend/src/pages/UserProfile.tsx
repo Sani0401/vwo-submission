@@ -130,6 +130,22 @@ export const UserProfile: React.FC = () => {
     fetchUserData();
   }, [token, user]);
 
+  // Test function for API debugging
+  const testAuthMeAPI = async () => {
+    try {
+      if (!token) {
+        alert('No token available');
+        return;
+      }
+      const response = await authAPI.getCurrentUser(token);
+      console.log('Auth API Test Response:', response);
+      alert('API Test Successful! Check console for details.');
+    } catch (error) {
+      console.error('Auth API Test Error:', error);
+      alert('API Test Failed! Check console for details.');
+    }
+  };
+
   const {
     register,
     handleSubmit,
