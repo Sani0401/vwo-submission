@@ -146,6 +146,62 @@ class AuthService:
             logger.error(f"Error getting user by ID: {e}")
             return None
     
+    def get_all_users(self, skip: int = 0, limit: int = 100) -> list[UserResponse]:
+        """Get all users with pagination"""
+        try:
+            users = self.user_repository.get_all_users(skip, limit)
+            return [
+                UserResponse(
+                    id=str(user.id),
+                    name=user.name,
+                    email=user.email,
+                    role=user.role,
+                    profile=user.profile,
+                    account=user.account,
+                    created_at=user.created_at,
+                    updated_at=user.updated_at
+                )
+                for user in users
+            ]
+            
+        except Exception as e:
+            logger.error(f"Error getting all users: {e}")
+            raise HTTPException(
+                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                detail="Error retrieving users"
+            )
+    
+    def update_user(self, user_id: str, update_data: dict) -> Optional[UserResponse]:
+        """Update user information"""
+        try:
+            user = self.user_repository.update_user(user_id, update_data)
+            if not user:
+                return None
+            
+            return UserResponse(
+                id=str(user.id),
+                name=user.name,
+                email=user.email,
+                role=user.role,
+                profile=user.profile,
+                account=user.account,
+                created_at=user.created_at,
+                updated_at=user.updated_at
+            )
+            
+        except Exception as e:
+            logger.error(f"Error updating user: {e}")
+            return None
+    
+    def delete_user(self, user_id: str) -> bool:
+        """Delete a user"""
+        try:
+            return self.user_repository.delete_user(user_id)
+            
+        except Exception as e:
+            logger.error(f"Error deleting user: {e}")
+            return False
+    
     def create_token_response(self, user: UserResponse) -> Dict[str, Any]:
         """Create a token response for successful authentication"""
         access_token_expires = timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
